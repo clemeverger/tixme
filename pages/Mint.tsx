@@ -6,6 +6,7 @@ import {
   useClaimIneligibilityReasons,
   useContract,
   useContractMetadata,
+  useNFT,
   useTotalCirculatingSupply,
   Web3Button,
 } from '@thirdweb-dev/react'
@@ -22,6 +23,8 @@ const Home: NextPage = () => {
   const [quantity, setQuantity] = useState(1)
   const { contract: editionDrop } = useContract(myEditionDropContractAddress)
   const { data: contractMetadata } = useContractMetadata(editionDrop)
+  const { data } = useNFT(editionDrop, tokenId)
+  console.log('🚀 ~ data:', data)
 
   const claimConditions = useClaimConditions(editionDrop)
   const activeClaimCondition = useActiveClaimConditionForWallet(editionDrop, address, tokenId)
@@ -129,8 +132,8 @@ const Home: NextPage = () => {
   }, [activeClaimCondition.isSuccess, claimIneligibilityReasons.data?.length, claimIneligibilityReasons.isSuccess, isSoldOut])
 
   const isLoading = useMemo(() => {
-    return activeClaimCondition.isLoading || claimedSupply.isLoading || !editionDrop
-  }, [activeClaimCondition.isLoading, editionDrop, claimedSupply.isLoading])
+    return activeClaimCondition.isLoading || claimedSupply.isLoading || !editionDrop || !data
+  }, [activeClaimCondition.isLoading, editionDrop, claimedSupply.isLoading, data])
 
   const buttonLoading = useMemo(() => isLoading || claimIneligibilityReasons.isLoading, [claimIneligibilityReasons.isLoading, isLoading])
   const buttonText = useMemo(() => {
@@ -170,11 +173,17 @@ const Home: NextPage = () => {
             </div>
 
             <div>
-              {/* Image Preview of NFTs */}
-              <img
-                src={contractMetadata?.image}
-                alt={`${contractMetadata?.name} preview image`}
-              />
+              <div>
+                {/* Image Preview of NFTs */}
+                <img
+                  src={contractMetadata?.image}
+                  alt={`${contractMetadata?.name} preview image`}
+                />
+              </div>
+              <div>
+                <img src={data?.metadata?.image!} />
+              </div>
+              <p>{data?.metadata.name}</p>
 
               {/* Amount claimed so far */}
               <div>

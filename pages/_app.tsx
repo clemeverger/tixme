@@ -1,8 +1,9 @@
 import type { AppProps } from 'next/app'
+import { ChakraProvider } from '@chakra-ui/react'
 import { ThirdwebProvider } from '@thirdweb-dev/react'
 import { MagicConnector } from '@thirdweb-dev/react/evm/connectors/magic'
-import '../styles/globals.css'
 import { ChainId } from '@thirdweb-dev/sdk'
+import { theme } from '../theme/theme'
 
 // This is the chain the dApp will work on.
 const activeChain = ChainId.Mumbai
@@ -22,7 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       activeChain={activeChain}
       walletConnectors={[magicLinkConnector, 'metamask']}
     >
-      <Component {...pageProps} />
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
     </ThirdwebProvider>
   )
 }

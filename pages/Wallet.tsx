@@ -1,54 +1,58 @@
-import React, { useState } from 'react'
-import { useAccount, useAddress, useDisconnect, useNetwork, useUser } from '@thirdweb-dev/react'
+import React, { ChangeEvent, useState } from 'react'
+import { useAddress, useDisconnect } from '@thirdweb-dev/react'
 import { useMagic } from '@thirdweb-dev/react/evm/connectors/magic'
-import Mint from './Mint'
+import { Button, FormControl, FormLabel, Input, FormHelperText, Stack, Center } from '@chakra-ui/react'
+import Image from 'next/image'
+import { redirect } from 'next/dist/server/api-utils'
+import { useRouter } from 'next/router'
 
 function Wallet() {
-  const address = useAddress()
+  const [email, setEmail] = useState('')
 
   const disconnectWallet = useDisconnect()
   const connectWithMagic = useMagic()
 
-  const test = useUser()
-  console.log('🚀 ~ Wallet ~ test:', test)
+  const address = useAddress()
 
-  const [email, setEmail] = useState('')
-  if (address)
-    return (
-      <div>
-        <h1>Connected as {address}</h1>
-        <button
-          onClick={() => {
-            disconnectWallet()
-          }}
-        >
-          Logout
-        </button>
-        <Mint />
-      </div>
-    )
+  const { push } = useRouter()
 
   return (
-    <div>
-      <h1>Login With Email</h1>
-
-      <input
-        type='email'
-        placeholder='Your Email Address'
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value)
-        }}
-      />
-
-      <button
-        onClick={() => {
-          connectWithMagic({ email })
-        }}
-      >
-        Login
-      </button>
-    </div>
+    <Stack
+      justify={'center'}
+      minHeight={'100vh'}
+      gap={8}
+      padding={8}
+    >
+      <Center>
+        <Image
+          src={'/logo.svg'}
+          alt='logo'
+          width={200}
+          height={39}
+        ></Image>
+      </Center>
+      <Stack gap={2}>
+        <FormControl>
+          <FormLabel px={4}>Email</FormLabel>
+          <Input
+            type='email'
+            placeholder='Votre email'
+            value={email}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setEmail(e.target.value)
+            }}
+          />
+          <FormHelperText px={4}>Nous ne partagerons jamais votre email.</FormHelperText>
+        </FormControl>
+        <Button
+          onClick={() => {
+            connectWithMagic({ email })
+          }}
+        >
+          Connexion
+        </Button>
+      </Stack>
+    </Stack>
   )
 }
 
