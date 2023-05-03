@@ -1,8 +1,12 @@
+import { useAddress, useThirdwebAuthContext, useThirdwebConnectedWalletContext, useThirdwebWallet } from '@thirdweb-dev/react'
+
 import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
+import Mint from './Mint'
 import Wallet from './Wallet'
 
 const Home: NextPage = () => {
+  const address = useAddress()
   return (
     <div className={styles.container}>
       <main className={styles.main}>

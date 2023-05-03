@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
-import { useAccount, useAddress, useDisconnect, useNetwork } from '@thirdweb-dev/react'
+import { useAccount, useAddress, useDisconnect, useNetwork, useUser } from '@thirdweb-dev/react'
 import { useMagic } from '@thirdweb-dev/react/evm/connectors/magic'
+import Mint from './Mint'
 
 function Wallet() {
   const address = useAddress()
 
   const disconnectWallet = useDisconnect()
   const connectWithMagic = useMagic()
+
+  const test = useUser()
+  console.log('🚀 ~ Wallet ~ test:', test)
 
   const [email, setEmail] = useState('')
   if (address)
@@ -20,6 +24,7 @@ function Wallet() {
         >
           Logout
         </button>
+        <Mint />
       </div>
     )
 
