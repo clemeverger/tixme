@@ -1,6 +1,7 @@
 const Button = {
   baseStyle: {
     borderRadius: 'full',
+    fontWeight: 'medium',
   },
   variants: {
     primary: { bg: 'primary.500', color: 'white', _focus: { bg: 'primary.600' } },

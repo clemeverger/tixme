@@ -1,6 +1,7 @@
 import { extendTheme } from '@chakra-ui/react'
-import Button from './components/Button'
-import Input from './components/Input'
+import Button from './components/button'
+import Input from './components/input'
+
 export const theme = extendTheme({
   styles: {
     global: {
@@ -9,6 +10,15 @@ export const theme = extendTheme({
         bg: 'neutral.900',
       },
     },
+  },
+  fonts: {
+    heading: `'Montserrat', sans-serif`,
+    body: `'Montserrat', sans-serif`,
+  },
+  fontWeights: {
+    normal: 400,
+    medium: 500,
+    bold: 700,
   },
   colors: {
     primary: {

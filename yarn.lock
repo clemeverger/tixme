@@ -2280,6 +2280,11 @@
   dependencies:
     "@floating-ui/core" "^1.0.5"
 
+"@fontsource/montserrat@^4.5.14":
+  version "4.5.14"
+  resolved "https://registry.yarnpkg.com/@fontsource/montserrat/-/montserrat-4.5.14.tgz#5f4bfc5e7f234a986d94d9e7e7193f852e6971e3"
+  integrity sha512-fTvrteVzuFUePhr4QYBGoK8G/YHLJ3IhF1HhKg0AxcFvZajJT7rM7ULdmKLSd2PkX44R3aaFZq1zDbmjbGGI+w==
+
 "@gnosis.pm/safe-deployments@1.17.0":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-deployments/-/safe-deployments-1.17.0.tgz#52a7b0e75c08b4a829f491b594e2babbdd6606c5"

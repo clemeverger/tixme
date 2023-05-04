@@ -13,15 +13,17 @@ import {
 import { BigNumber, utils } from 'ethers'
 import type { NextPage } from 'next'
 import { useMemo, useState } from 'react'
-import { parseIneligibility } from '../helpers/parseIneligibility'
+import { parseIneligibility } from '../../helpers/parseIneligibility'
+import Layout from '../../layouts/layout'
+import { Box } from '@chakra-ui/react'
+import { contractAddress } from '../../configs/contracts'
 
-const myEditionDropContractAddress = '0x8cF82b3ED19CBcC1De63e71575150891dE320E16'
 const tokenId = 0
 
-const Home: NextPage = () => {
+const Nft: NextPage = () => {
   const address = useAddress()
   const [quantity, setQuantity] = useState(1)
-  const { contract: editionDrop } = useContract(myEditionDropContractAddress)
+  const { contract: editionDrop } = useContract(contractAddress)
   const { data: contractMetadata } = useContractMetadata(editionDrop)
   const { data } = useNFT(editionDrop, tokenId)
   console.log('🚀 ~ data:', data)
@@ -158,108 +160,114 @@ const Home: NextPage = () => {
     return 'Claiming not available'
   }, [isSoldOut, canClaim, claimIneligibilityReasons.data, buttonLoading, activeClaimCondition.data?.currencyMetadata.value, priceToMint, quantity])
 
-  return (
-    <div>
-      <div>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            <div>
-              {/* Title of your NFT Collection */}
-              <h1>{contractMetadata?.name}</h1>
-              {/* Description of your NFT Collection */}
-              <p>{contractMetadata?.description}</p>
-            </div>
-
-            <div>
+  if (address)
+    return (
+      <Layout>
+        <Box
+          flex={1}
+          overflowY={'scroll'}
+        >
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <>
               <div>
-                {/* Image Preview of NFTs */}
-                <img
-                  src={contractMetadata?.image}
-                  alt={`${contractMetadata?.name} preview image`}
-                />
-              </div>
-              <div>
-                <img src={data?.metadata?.image!} />
-              </div>
-              <p>{data?.metadata.name}</p>
-
-              {/* Amount claimed so far */}
-              <div>
-                <div>
-                  <p>Total Minted</p>
-                </div>
-                <div>
-                  {claimedSupply ? (
-                    <p>
-                      <b>{numberClaimed}</b>
-                      {' / '}
-                      {numberTotal || '∞'}
-                    </p>
-                  ) : (
-                    // Show loading state if we're still loading the supply
-                    <p>Loading...</p>
-                  )}
-                </div>
+                {/* Title of your NFT Collection */}
+                <h1>{contractMetadata?.name}</h1>
+                {/* Description of your NFT Collection */}
+                <p>{contractMetadata?.description}</p>
               </div>
 
-              {claimConditions.data?.length === 0 || claimConditions.data?.every((cc) => cc.maxClaimableSupply === '0') ? (
+              <div>
                 <div>
-                  <h2>This drop is not ready to be minted yet. (No claim condition set)</h2>
+                  {/* Image Preview of NFTs */}
+                  <img
+                    src={contractMetadata?.image}
+                    alt={`${contractMetadata?.name} preview image`}
+                  />
                 </div>
-              ) : (
-                <>
-                  <p>Quantity</p>
+                <div>
+                  <img src={data?.metadata?.image!} />
+                </div>
+                <p>{data?.metadata.name}</p>
+
+                {/* Amount claimed so far */}
+                <div>
                   <div>
-                    <button
-                      onClick={() => setQuantity(quantity - 1)}
-                      disabled={quantity <= 1}
-                    >
-                      -
-                    </button>
-
-                    <h4>{quantity}</h4>
-
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      disabled={quantity >= maxClaimable}
-                    >
-                      +
-                    </button>
+                    <p>Total Minted</p>
                   </div>
-
                   <div>
-                    {isSoldOut ? (
-                      <div>
-                        <h2>Sold Out</h2>
-                      </div>
+                    {claimedSupply ? (
+                      <p>
+                        <b>{numberClaimed}</b>
+                        {' / '}
+                        {numberTotal || '∞'}
+                      </p>
                     ) : (
-                      <Web3Button
-                        contractAddress={editionDrop?.getAddress() || ''}
-                        action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
-                        isDisabled={!canClaim || buttonLoading}
-                        onError={(err) => {
-                          console.error(err)
-                          alert('Error claiming NFTs')
-                        }}
-                        onSuccess={() => {
-                          setQuantity(1)
-                          alert('Successfully claimed NFTs')
-                        }}
-                      >
-                        {buttonLoading ? 'Loading...' : buttonText}
-                      </Web3Button>
+                      // Show loading state if we're still loading the supply
+                      <p>Loading...</p>
                     )}
                   </div>
-                </>
-              )}
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  )
+                </div>
+
+                {claimConditions.data?.length === 0 || claimConditions.data?.every((cc) => cc.maxClaimableSupply === '0') ? (
+                  <div>
+                    <h2>This drop is not ready to be minted yet. (No claim condition set)</h2>
+                  </div>
+                ) : (
+                  <>
+                    <p>Quantity</p>
+                    <div>
+                      <button
+                        onClick={() => setQuantity(quantity - 1)}
+                        disabled={quantity <= 1}
+                      >
+                        -
+                      </button>
+
+                      <h4>{quantity}</h4>
+
+                      <button
+                        onClick={() => setQuantity(quantity + 1)}
+                        disabled={quantity >= maxClaimable}
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <div>
+                      {isSoldOut ? (
+                        <div>
+                          <h2>Sold Out</h2>
+                        </div>
+                      ) : (
+                        <Web3Button
+                          contractAddress={editionDrop?.getAddress()!}
+                          action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
+                          isDisabled={!canClaim || buttonLoading}
+                          onError={(err) => {
+                            console.error(err)
+                            alert('Error claiming NFTs')
+                          }}
+                          onSuccess={() => {
+                            setQuantity(1)
+                            alert('Successfully claimed NFTs')
+                          }}
+                        >
+                          {buttonLoading ? 'Loading...' : buttonText}
+                        </Web3Button>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
+            </>
+          )}
+        </Box>
+      </Layout>
+    )
+
+  return <></>
 }
 
-export default Home
+export default Nft
