@@ -15,7 +15,7 @@ const Wallet = () => {
   console.log('🚀 ~ Wal ~ address:', address)
   const { push } = useRouter()
   useEffect(() => {
-    if (address) push('/marketplace')
+    if (address) push('/nft')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address])
 

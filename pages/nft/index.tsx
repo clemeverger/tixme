@@ -171,26 +171,21 @@ const Nft: NextPage = () => {
             <p>Loading...</p>
           ) : (
             <>
-              <div>
-                {/* Title of your NFT Collection */}
+              {/*     <div>
                 <h1>{contractMetadata?.name}</h1>
-                {/* Description of your NFT Collection */}
                 <p>{contractMetadata?.description}</p>
-              </div>
+              </div> 
+               <img
+                  src={contractMetadata?.image}
+                  alt={`${contractMetadata?.name} preview image`}
+                />
+                */}
 
-              <div>
-                <div>
-                  {/* Image Preview of NFTs */}
-                  <img
-                    src={contractMetadata?.image}
-                    alt={`${contractMetadata?.name} preview image`}
-                  />
-                </div>
+              <>
                 <div>
                   <img src={data?.metadata?.image!} />
                 </div>
                 <p>{data?.metadata.name}</p>
-
                 {/* Amount claimed so far */}
                 <div>
                   <div>
@@ -260,7 +255,7 @@ const Nft: NextPage = () => {
                     </div>
                   </>
                 )}
-              </div>
+              </>
             </>
           )}
         </Box>
