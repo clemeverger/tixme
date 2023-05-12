@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { useAddress, useDisconnect } from '@thirdweb-dev/react'
+import { ConnectWallet, useAddress, useDisconnect } from '@thirdweb-dev/react'
 import { useMagic } from '@thirdweb-dev/react/evm/connectors/magic'
 import { Button, FormControl, FormLabel, Input, FormHelperText, Stack, Center, Container } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
@@ -47,13 +47,14 @@ const Wallet = () => {
               />
               <FormHelperText px={4}>Nous ne partagerons jamais votre email.</FormHelperText>
             </FormControl>
-            <Button
+            {/*  <Button
               onClick={() => {
                 connectWithMagic({ email })
               }}
             >
               Connexion
-            </Button>
+            </Button> */}
+            <ConnectWallet />
           </Stack>
         </Center>
       </Stack>
