@@ -49,11 +49,12 @@ const Marketplace: NextPage = () => {
           data.map((sft, index) => {
             return (
               <div key={index}>
-                <h1>{sft.metadata.name}</h1>
                 <ThirdwebNftMedia
                   metadata={sft.metadata!}
                   width='100%'
+                  height='auto'
                 />
+                <Text>{sft.metadata.name}</Text>
               </div>
             )
           })}
