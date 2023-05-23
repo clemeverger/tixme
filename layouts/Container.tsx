@@ -1,6 +1,6 @@
 import React from 'react'
 import BottomNavigation from './navigation/BottomNavigation'
-import { Container, Stack, Skeleton, Box } from '@chakra-ui/react'
+import { Container as ChakraContainer, Stack, Skeleton, Box } from '@chakra-ui/react'
 import TopNavigation from './navigation/TopNavigation'
 
 type LayoutProps = {
@@ -9,14 +9,14 @@ type LayoutProps = {
   topNavigation?: React.ReactNode
 }
 
-const Layout = ({ children, isLoading, topNavigation }: LayoutProps) => {
+const Container = ({ children, isLoading, topNavigation }: LayoutProps) => {
   return (
     <Skeleton
       isLoaded={!isLoading}
       startColor='primary.300'
       endColor='neutral.900'
     >
-      <Container>
+      <ChakraContainer>
         <Stack height={'100vh'}>
           <TopNavigation>{topNavigation}</TopNavigation>
           <Box
@@ -27,9 +27,9 @@ const Layout = ({ children, isLoading, topNavigation }: LayoutProps) => {
           </Box>
           <BottomNavigation />
         </Stack>
-      </Container>
+      </ChakraContainer>
     </Skeleton>
   )
 }
 
-export default Layout
+export default Container

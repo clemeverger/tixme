@@ -1,15 +1,15 @@
 import React from 'react'
-import Layout from '../../layouts/Layout'
 import Head from 'next/head'
+import Container from '../../layouts/Container'
 
 const index = () => {
   return (
-    <Layout>
+    <Container>
       <Head>
         <title>tixme - tickets</title>
       </Head>
       Tickets
-    </Layout>
+    </Container>
   )
 }
 

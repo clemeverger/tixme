@@ -1,10 +1,11 @@
+import Head from 'next/head'
 import React, { useState } from 'react'
 import { Box, HStack, Img, Select, Text } from '@chakra-ui/react'
 import { useContract, useNFTs, useAddress } from '@thirdweb-dev/react'
 import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
-import Head from 'next/head'
-import Layout from '../../layouts/Layout'
+
+import Container from '../../layouts/Container'
 import getReadableDate from '../../helpers/getReadableDate'
 
 const Marketplace: NextPage = () => {
@@ -17,7 +18,7 @@ const Marketplace: NextPage = () => {
   const [date, setDate] = useState(new Date())
 
   return (
-    <Layout
+    <Container
       isLoading={isLoading}
       topNavigation={
         <>
@@ -54,7 +55,7 @@ const Marketplace: NextPage = () => {
             )
           })}
       </Box>
-    </Layout>
+    </Container>
   )
 }
 
