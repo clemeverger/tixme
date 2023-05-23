@@ -14,11 +14,11 @@ import { BigNumber, utils } from 'ethers'
 import type { NextPage } from 'next'
 import { useMemo, useState } from 'react'
 import { parseIneligibility } from '../../helpers/parseIneligibility'
-import Layout from '../../layouts/layout'
+import Layout from '../../layouts/Layout'
 import { Box } from '@chakra-ui/react'
 import { contractAddress } from '../../configs/contracts'
 
-const tokenId = 0
+const tokenId = 3
 
 const Nft: NextPage = () => {
   const address = useAddress()

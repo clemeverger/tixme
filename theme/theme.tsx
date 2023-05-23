@@ -18,6 +18,13 @@ export const theme = extendTheme({
     medium: 500,
     bold: 700,
   },
+  fontSize: {
+    xs: '0.75rem',
+    sm: '0.875rem',
+    md: '1rem',
+    lg: '1.125rem',
+    xl: '1.25rem',
+  },
   colors: {
     primary: {
       100: '#EBEFFF',
@@ -45,6 +52,13 @@ export const theme = extendTheme({
     },
   },
   components: {
+    Text: {
+      baseStyle: {
+        color: 'white',
+        marginTop: '0!important',
+        fontWeight: 'medium',
+      },
+    },
     Button: {
       baseStyle: {
         borderRadius: 'full',

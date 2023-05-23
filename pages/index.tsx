@@ -1,10 +1,8 @@
-import { useAddress, useThirdwebAuthContext, useThirdwebConnectedWalletContext, useThirdwebWallet } from '@thirdweb-dev/react'
-
 import type { NextPage } from 'next'
-import Connexion from './connexion'
+import Wallet from '../components/Wallet'
 
 const Home: NextPage = () => {
-  return <Connexion />
+  return <Wallet />
 }
 
 export default Home

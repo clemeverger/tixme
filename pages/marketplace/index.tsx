@@ -1,7 +1,7 @@
 import React from 'react'
-import Layout from '../../layouts/layout'
+import Layout from '../../layouts/Layout'
 import { Box } from '@chakra-ui/react'
-import { useUnclaimedNFTs, useContract, useNFTs, useAddress, useNFT } from '@thirdweb-dev/react'
+import { useContract, useNFTs, useAddress } from '@thirdweb-dev/react'
 import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
 
@@ -10,13 +10,23 @@ const Marketplace: NextPage = () => {
   console.log('🚀 ~ Marketplace ~ adress:', address)
 
   const { contract: editionDrop } = useContract(contractAddress)
-  const { data } = useNFTs(editionDrop)
+  const { data, isLoading } = useNFTs(editionDrop)
 
   console.log('🚀 ~ Marketplace ~ data:', data)
 
   return (
-    <Layout>
-      <Box flex={1}>index</Box>
+    <Layout isLoading={isLoading}>
+      <Box flex={1}>
+        {data &&
+          data.map((sft, index) => {
+            return (
+              <div key={index}>
+                <h1>{sft.metadata.name}</h1>
+                <img src={sft.metadata.image!} />
+              </div>
+            )
+          })}
+      </Box>
     </Layout>
   )
 }
