@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react'
 import { useContract, useNFTs, useAddress } from '@thirdweb-dev/react'
 import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
+import Head from 'next/head'
 
 const Marketplace: NextPage = () => {
   const address = useAddress()
@@ -16,6 +17,9 @@ const Marketplace: NextPage = () => {
 
   return (
     <Layout isLoading={isLoading}>
+      <Head>
+        <title>tixme - marketplace</title>
+      </Head>
       <Box flex={1}>
         {data &&
           data.map((sft, index) => {
