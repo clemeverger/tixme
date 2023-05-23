@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React, { useState } from 'react'
 import { Box, HStack, Img, Select, Text } from '@chakra-ui/react'
-import { useContract, useNFTs, useAddress } from '@thirdweb-dev/react'
+import { useContract, useNFTs, useAddress, ThirdwebNftMedia } from '@thirdweb-dev/react'
 import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
 
@@ -50,7 +50,10 @@ const Marketplace: NextPage = () => {
             return (
               <div key={index}>
                 <h1>{sft.metadata.name}</h1>
-                <img src={sft.metadata.image!} />
+                <ThirdwebNftMedia
+                  metadata={sft.metadata!}
+                  width='100%'
+                />
               </div>
             )
           })}
