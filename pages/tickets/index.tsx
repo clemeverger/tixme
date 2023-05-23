@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Container from '../../layouts/Container'
-import { Image, Text } from '@chakra-ui/react'
+import { Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 
 const index = () => {
   return (
@@ -16,7 +16,20 @@ const index = () => {
       <Head>
         <title>tixme - tickets</title>
       </Head>
-      Tickets
+      <Tabs variant={'neutral'}>
+        <TabList>
+          <Tab flex={1}>Marchée principale</Tab>
+          <Tab flex={1}>Marchée secondaire</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <p>one!</p>
+          </TabPanel>
+          <TabPanel>
+            <p>two!</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </Container>
   )
 }

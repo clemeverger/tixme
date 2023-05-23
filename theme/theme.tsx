@@ -93,5 +93,23 @@ export const theme = extendTheme({
         variant: 'primary',
       },
     },
+    Tabs: {
+      variants: {
+        neutral: {
+          tablist: {
+            backgroundColor: 'neutral.800',
+            borderRadius: 'full',
+          },
+          tab: {
+            fontSize: 'sm',
+            fontWeight: 'medium',
+            color: 'neutral.700',
+            _selected: {
+              color: 'white',
+            },
+          },
+        },
+      },
+    },
   },
 })

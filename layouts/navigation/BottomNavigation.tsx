@@ -1,5 +1,4 @@
-import { Flex, VStack, Text } from '@chakra-ui/react'
-import Image from 'next/image'
+import { Flex, VStack, Text, Image } from '@chakra-ui/react'
 import Link from 'next/link'
 import React from 'react'
 import { useRouter } from 'next/router'
@@ -22,8 +21,8 @@ const BottomNavigation = ({ children }: BottomNavigationProps) => {
         <VStack>
           <Image
             src={router.pathname === '/marketplace' ? 'icons/marketplace-active.svg' : 'icons/marketplace-inactive.svg'}
-            width={24}
-            height={24}
+            width={6}
+            height={6}
             alt='marketplace'
           />
           <Text fontSize={'xs'}>marketplace</Text>
@@ -33,8 +32,8 @@ const BottomNavigation = ({ children }: BottomNavigationProps) => {
         <VStack>
           <Image
             src={router.pathname === '/tickets' ? 'icons/tickets-active.svg' : 'icons/tickets-inactive.svg'}
-            width={24}
-            height={24}
+            width={6}
+            height={6}
             alt='tickets'
           />
           <Text fontSize={'xs'}>tickets</Text>
@@ -44,8 +43,8 @@ const BottomNavigation = ({ children }: BottomNavigationProps) => {
         <VStack>
           <Image
             src={router.pathname === '/profile' ? 'icons/profile-active.svg' : 'icons/profile-inactive.svg'}
-            width={24}
-            height={24}
+            width={6}
+            height={6}
             alt='profile'
           />
           <Text fontSize={'xs'}>profile</Text>
