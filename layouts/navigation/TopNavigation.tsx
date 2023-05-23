@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, HStack } from '@chakra-ui/react'
 import { type } from 'os'
 import React from 'react'
 
@@ -7,13 +7,15 @@ type TopNavigationProps = {
 }
 const TopNavigation = ({ children }: TopNavigationProps) => {
   return (
-    <Flex
+    <HStack
       width={'full'}
-      justify={'space-evenly'}
+      justify={'space-between'}
+      paddingTop={2}
+      paddingBottom={2}
       background={'neutral.900'}
     >
-      navigation
-    </Flex>
+      {children}
+    </HStack>
   )
 }
 

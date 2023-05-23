@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import Layout from '../../layouts/Layout'
-import { Box } from '@chakra-ui/react'
+import { Box, HStack, Image, Img, Input, InputGroup, InputLeftElement, Select, Text } from '@chakra-ui/react'
 import { useContract, useNFTs, useAddress } from '@thirdweb-dev/react'
 import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
 import Head from 'next/head'
+import getReadableDate from '../../helpers/getReadableDate'
 
 const Marketplace: NextPage = () => {
   const address = useAddress()
@@ -12,11 +13,33 @@ const Marketplace: NextPage = () => {
 
   const { contract: editionDrop } = useContract(contractAddress)
   const { data, isLoading } = useNFTs(editionDrop)
-
-  console.log('🚀 ~ Marketplace ~ data:', data)
+  const [location, setLocation] = useState('Nantes')
+  const [date, setDate] = useState(new Date())
 
   return (
-    <Layout isLoading={isLoading}>
+    <Layout
+      isLoading={isLoading}
+      topNavigation={
+        <>
+          <Select
+            maxWidth={'28%'}
+            variant='unstyled'
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            icon={<Img src='/icons/dropdown.svg' />}
+            gap={2}
+          >
+            <option value='Paris'>Paris</option>
+            <option value='Nantes'>Nantes</option>
+          </Select>
+
+          <HStack gap={2}>
+            <Img src='/icons/calendar.svg' />
+            <Text>{getReadableDate(date)}</Text>
+          </HStack>
+        </>
+      }
+    >
       <Head>
         <title>tixme - marketplace</title>
       </Head>
