@@ -111,5 +111,12 @@ export const theme = extendTheme({
         },
       },
     },
+    Drawer: {
+      baseStyle: {
+        dialog: {
+          bg: 'neutral.900',
+        },
+      },
+    },
   },
 })

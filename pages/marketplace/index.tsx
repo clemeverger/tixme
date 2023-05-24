@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import React, { useState } from 'react'
-import { Box, HStack, Img, Select, Text } from '@chakra-ui/react'
+import { Box, Card, HStack, Image, Img, Select, Text } from '@chakra-ui/react'
 import { useContract, useNFTs, useAddress, ThirdwebNftMedia } from '@thirdweb-dev/react'
 import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
 
 import Container from '../../layouts/Container'
 import getReadableDate from '../../helpers/getReadableDate'
+import EventCard from '../../components/EventCard'
 
 const Marketplace: NextPage = () => {
   const address = useAddress()
@@ -14,6 +15,7 @@ const Marketplace: NextPage = () => {
 
   const { contract: editionDrop } = useContract(contractAddress)
   const { data, isLoading } = useNFTs(editionDrop)
+  console.log('🚀 ~ data:', data)
   const [location, setLocation] = useState('Nantes')
   const [date, setDate] = useState(new Date())
 
@@ -27,7 +29,7 @@ const Marketplace: NextPage = () => {
             variant='unstyled'
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            icon={<Img src='/icons/dropdown.svg' />}
+            icon={<Img src='/icons/chevron-down.svg' />}
             gap={2}
           >
             <option value='Paris'>Paris</option>
@@ -48,14 +50,10 @@ const Marketplace: NextPage = () => {
         {data &&
           data.map((sft, index) => {
             return (
-              <div key={index}>
-                <ThirdwebNftMedia
-                  metadata={sft.metadata!}
-                  width='100%'
-                  height='auto'
-                />
-                <Text>{sft.metadata.name}</Text>
-              </div>
+              <EventCard
+                key={index}
+                metadata={sft.metadata}
+              />
             )
           })}
       </Box>

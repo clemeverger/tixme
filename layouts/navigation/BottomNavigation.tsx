@@ -14,8 +14,8 @@ const BottomNavigation = ({ children }: BottomNavigationProps) => {
       justify={'space-between'}
       background={'neutral.900'}
       paddingX={12}
-      paddingTop={2}
-      paddingBottom={2}
+      paddingTop={4}
+      paddingBottom={12}
     >
       <Link href={'/marketplace'}>
         <VStack>
