@@ -22,6 +22,11 @@ const Container = ({ children, isLoading, topNavigation }: LayoutProps) => {
           <Box
             flex={1}
             overflowY={'scroll'}
+            sx={{
+              '::-webkit-scrollbar': {
+                display: 'none',
+              },
+            }}
           >
             {children}
           </Box>

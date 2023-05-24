@@ -10,6 +10,7 @@ import getReadableDate from '../../helpers/getReadableDate'
 import EventCard from '../../components/EventCard'
 
 const Marketplace: NextPage = () => {
+  //https://ipfs-2.thirdwebcdn.com/ipfs/QmcYMoffsrBtaBvmVor9N2hcVADehVVCvntZyuWNNGvmbe/events.json
   const address = useAddress()
   console.log('🚀 ~ Marketplace ~ adress:', address)
 

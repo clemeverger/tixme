@@ -10,7 +10,7 @@ const TopNavigation = ({ children }: TopNavigationProps) => {
     <HStack
       width={'full'}
       justify={'space-between'}
-      paddingTop={12}
+      paddingTop={2}
       paddingBottom={4}
       background={'neutral.900'}
     >

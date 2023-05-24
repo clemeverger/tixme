@@ -15,7 +15,7 @@ const BottomNavigation = ({ children }: BottomNavigationProps) => {
       background={'neutral.900'}
       paddingX={12}
       paddingTop={4}
-      paddingBottom={12}
+      paddingBottom={8}
     >
       <Link href={'/marketplace'}>
         <VStack>
