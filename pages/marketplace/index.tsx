@@ -1,28 +1,33 @@
 import Head from 'next/head'
-import React, { useState } from 'react'
-import { Box, Card, HStack, Image, Img, Select, Text } from '@chakra-ui/react'
-import { useContract, useNFTs, useAddress, ThirdwebNftMedia } from '@thirdweb-dev/react'
+import React, { useMemo, useState } from 'react'
+import { Box, HStack, Img, Select, Text } from '@chakra-ui/react'
+import { useContract, useNFTs } from '@thirdweb-dev/react'
 import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
-
 import Container from '../../layouts/Container'
 import getReadableDate from '../../helpers/getReadableDate'
 import EventCard from '../../components/EventCard'
+import useGetEvents from '../../hooks/useGetEvents'
 
 const Marketplace: NextPage = () => {
-  //https://ipfs-2.thirdwebcdn.com/ipfs/QmcYMoffsrBtaBvmVor9N2hcVADehVVCvntZyuWNNGvmbe/events.json
-  const address = useAddress()
-  console.log('🚀 ~ Marketplace ~ adress:', address)
-
   const { contract: editionDrop } = useContract(contractAddress)
-  const { data, isLoading } = useNFTs(editionDrop)
-  console.log('🚀 ~ data:', data)
+  const { data: tickets, isLoading: ticketsLoading } = useNFTs(editionDrop)
+
+  const events = useGetEvents()
+  const eventsWithTickets = useMemo(() => {
+    if (!events || !tickets) return []
+    return events.events.map((event: any) => ({
+      ...event,
+      tickets: tickets.filter((ticket) => event.nfts.includes(Number(ticket.metadata.id))),
+    }))
+  }, [events, tickets])
+
   const [location, setLocation] = useState('Nantes')
   const [date, setDate] = useState(new Date())
 
   return (
     <Container
-      isLoading={isLoading}
+      isLoading={ticketsLoading}
       topNavigation={
         <>
           <Select
@@ -48,12 +53,12 @@ const Marketplace: NextPage = () => {
         <title>tixme - marketplace</title>
       </Head>
       <Box flex={1}>
-        {data &&
-          data.map((sft, index) => {
+        {eventsWithTickets &&
+          eventsWithTickets.map((event: any, index: number) => {
             return (
               <EventCard
                 key={index}
-                metadata={sft.metadata}
+                metadata={event}
               />
             )
           })}
