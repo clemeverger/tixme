@@ -36,7 +36,7 @@ const BottomNavigation = ({ children }: BottomNavigationProps) => {
             height={6}
             alt='tickets'
           />
-          <Text fontSize={'xs'}>tickets</Text>
+          <Text fontSize={'xs'}>mes tickets</Text>
         </VStack>
       </Link>
       <Link href={'/profile'}>
@@ -47,7 +47,7 @@ const BottomNavigation = ({ children }: BottomNavigationProps) => {
             height={6}
             alt='profile'
           />
-          <Text fontSize={'xs'}>profile</Text>
+          <Text fontSize={'xs'}>mon profil</Text>
         </VStack>
       </Link>
     </Flex>

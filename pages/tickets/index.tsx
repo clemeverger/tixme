@@ -18,8 +18,8 @@ const index = () => {
       </Head>
       <Tabs variant={'neutral'}>
         <TabList>
-          <Tab flex={1}>Marchée principale</Tab>
-          <Tab flex={1}>Marchée secondaire</Tab>
+          <Tab flex={1}>À venir</Tab>
+          <Tab flex={1}>Passées</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>

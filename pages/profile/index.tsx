@@ -1,14 +1,26 @@
 import React from 'react'
 import Head from 'next/head'
 import Container from '../../layouts/Container'
+import { ConnectWallet } from '@thirdweb-dev/react'
+import { Heading, Text } from '@chakra-ui/react'
 
 const index = () => {
   return (
-    <Container>
+    <Container
+      topNavigation={
+        <>
+          <Text>Mon profil</Text>
+        </>
+      }
+    >
       <Head>
-        <title>tixme - profile</title>
+        <title>tixme - profil</title>
       </Head>
-      Profile
+
+      <ConnectWallet
+        btnTitle='Connexion'
+        style={{ width: '100%', justifyContent: 'space-evenly' }}
+      />
     </Container>
   )
 }

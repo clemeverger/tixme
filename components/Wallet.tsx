@@ -9,7 +9,7 @@ const Wallet = () => {
   const { push } = useRouter()
 
   useEffect(() => {
-    address && push('/marketplace')
+    if (address != undefined) push('/marketplace')
   }, [address, push])
 
   return (
