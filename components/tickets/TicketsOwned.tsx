@@ -8,7 +8,10 @@ type TicketsOwnedProps = {
 
 const TicketsOwned = ({ tickets }: TicketsOwnedProps) => {
   return (
-    <Stack py={4}>
+    <Stack
+      py={4}
+      gap={8}
+    >
       {tickets.map((ticket: TicketOwned, index: number) => (
         <TicketsOwnedDrawer
           key={index}
