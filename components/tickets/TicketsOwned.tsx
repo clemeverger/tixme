@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack } from '@chakra-ui/react'
+import { Stack, Text } from '@chakra-ui/react'
 import TicketsOwnedDrawer from './TicketsOwnedDrawer'
 
 type TicketsOwnedProps = {
@@ -12,12 +12,16 @@ const TicketsOwned = ({ tickets }: TicketsOwnedProps) => {
       py={4}
       gap={8}
     >
-      {tickets.map((ticket: TicketOwned, index: number) => (
-        <TicketsOwnedDrawer
-          key={index}
-          ticket={ticket}
-        />
-      ))}
+      {tickets.length >= 1 ? (
+        tickets.map((ticket: TicketOwned, index: number) => (
+          <TicketsOwnedDrawer
+            key={index}
+            ticket={ticket}
+          />
+        ))
+      ) : (
+        <Text textAlign={'center'}>Vous n&apos;avez pas encore de ticket.</Text>
+      )}
     </Stack>
   )
 }
