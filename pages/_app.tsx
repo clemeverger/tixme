@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThirdwebProvider
       activeChain={activeChain}
-      supportedWallets={[magicLink({ apiKey: 'pk_live_D0AD559CD1C86861' }), metamaskWallet()]}
+      supportedWallets={[magicLink({ apiKey: 'pk_live_D0AD559CD1C86861' })]}
     >
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />

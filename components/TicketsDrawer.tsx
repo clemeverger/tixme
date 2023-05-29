@@ -36,7 +36,7 @@ const TicketsDrawer = ({ metadata }: any) => {
           />
         }
       >
-        à partir de 20 €
+        à partir de 0.0 MATIC
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -70,7 +70,7 @@ const TicketsDrawer = ({ metadata }: any) => {
                 <Tab flex={1}>Marché secondaire</Tab>
               </TabList>
               <TabPanels>
-                <TabPanel>
+                <TabPanel px={0}>
                   <PrimarySalesTickets tickets={metadata.tickets} />
                 </TabPanel>
                 <TabPanel>
@@ -79,7 +79,6 @@ const TicketsDrawer = ({ metadata }: any) => {
               </TabPanels>
             </Tabs>
           </DrawerBody>
-
           <DrawerFooter></DrawerFooter>
         </DrawerContent>
       </Drawer>

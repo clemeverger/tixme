@@ -66,7 +66,7 @@ export const theme = extendTheme({
       },
       variants: {
         primary: { bg: 'primary.500', color: 'white', _focus: { bg: 'primary.600' } },
-        secondary: { bg: 'neutral.800', color: 'neutral.500', _focus: { bg: 'neutral.700' } },
+        neutral: { bg: 'neutral.800', color: 'neutral.500', _focus: { bg: 'neutral.700' } },
       },
       defaultProps: {
         variant: 'primary',
@@ -83,7 +83,7 @@ export const theme = extendTheme({
         },
       },
       variants: {
-        primary: {
+        neutral: {
           field: {
             borderRadius: 'full',
           },
@@ -115,6 +115,19 @@ export const theme = extendTheme({
       baseStyle: {
         dialog: {
           bg: 'neutral.900',
+        },
+        header: {
+          paddingX: 4,
+          paddingTop: 2,
+          paddingBottom: 4,
+        },
+        body: {
+          paddingX: 4,
+        },
+        footer: {
+          paddingX: 4,
+          paddingTop: 4,
+          paddingBottom: 8,
         },
       },
     },

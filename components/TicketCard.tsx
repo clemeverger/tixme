@@ -8,7 +8,7 @@ const TicketCard = ({ ticket }: any) => {
   const { contract: editionDrop } = useContract(contractAddress)
   const { isLoading: isLoadingClaimConditions, data: claimConditions } = useClaimConditions(editionDrop, tokenId)
   return (
-    <Box>
+    <Stack gap={2}>
       <ThirdwebNftMedia
         metadata={ticket.metadata}
         width='100%'
@@ -28,9 +28,13 @@ const TicketCard = ({ ticket }: any) => {
         endColor='neutral.900'
         mt={'0!important'}
       >
-        {Array.isArray(claimConditions) && claimConditions.length ? <ClaimConditions /> : <Text color={'primary.300'}>Non disponible à la vente</Text>}
+        {Array.isArray(claimConditions) && claimConditions.length ? (
+          <ClaimConditions tokenId={tokenId} />
+        ) : (
+          <Text color={'primary.300'}>Non disponible à la vente</Text>
+        )}
       </Skeleton>
-    </Box>
+    </Stack>
   )
 }
 

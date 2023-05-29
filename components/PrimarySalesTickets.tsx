@@ -6,7 +6,7 @@ type Tickets = { tickets: Ticket[] }
 const PrimarySalesTickets = ({ tickets }: Tickets) => {
   return (
     <Stack
-      spacing={8}
+      gap={8}
       mt={4}
     >
       {tickets.map((ticket: any, index: number) => (

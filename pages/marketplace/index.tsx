@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React, { useMemo, useState } from 'react'
-import { Box, HStack, Img, Select, Text } from '@chakra-ui/react'
+import { Box, HStack, Image, Img, Input, InputGroup, InputLeftElement, Select, Stack, Text } from '@chakra-ui/react'
 import { useContract, useNFTs } from '@thirdweb-dev/react'
 import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
@@ -117,15 +117,34 @@ const Marketplace: NextPage = () => {
         <title>tixme - marketplace</title>
       </Head>
       <Box flex={1}>
-        {eventsWithTickets &&
-          eventsWithTickets.map((event: any, index: number) => {
-            return (
-              <EventCard
-                key={index}
-                metadata={event}
-              />
-            )
-          })}
+        <InputGroup mb={4}>
+          <InputLeftElement>
+            <Image
+              width={5}
+              height={5}
+              src='/icons/search.svg'
+              alt='search icon'
+            />
+          </InputLeftElement>
+          <Input
+            placeholder='Rechercher un événement'
+            variant={'neutral'}
+          />
+        </InputGroup>
+        <Stack
+          gap={8}
+          py={4}
+        >
+          {eventsWithTickets &&
+            eventsWithTickets.map((event: any, index: number) => {
+              return (
+                <EventCard
+                  key={index}
+                  metadata={event}
+                />
+              )
+            })}
+        </Stack>
       </Box>
     </Container>
   )
