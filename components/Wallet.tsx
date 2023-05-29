@@ -16,7 +16,7 @@ const Wallet = () => {
     <Container>
       <Stack
         justify={'space-evenly'}
-        minHeight={'100vh'}
+        minHeight={'100dvh'}
       >
         <Center>
           <Image

@@ -26,7 +26,7 @@ const Container = ({ children, isLoading, topNavigation }: LayoutProps) => {
       endColor='neutral.900'
     >
       <ChakraContainer>
-        <Stack height={'100vh'}>
+        <Stack height={'100dvh'}>
           <TopNavigation>{topNavigation}</TopNavigation>
           <Box
             flex={1}
