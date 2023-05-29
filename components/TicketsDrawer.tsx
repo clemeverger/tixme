@@ -21,6 +21,7 @@ import React from 'react'
 import PrimarySalesTickets from './PrimarySalesTickets'
 
 const TicketsDrawer = ({ metadata }: any) => {
+  console.log('🚀 ~ TicketsDrawer ~ metadata:', metadata)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef(null)
   return (
@@ -74,7 +75,7 @@ const TicketsDrawer = ({ metadata }: any) => {
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <PrimarySalesTickets metadata={metadata} />
+                  <PrimarySalesTickets tickets={metadata.tickets} />
                 </TabPanel>
                 <TabPanel>
                   <Text>Not implemented yet</Text>

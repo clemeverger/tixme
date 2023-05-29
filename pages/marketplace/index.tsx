@@ -89,31 +89,6 @@ const Marketplace: NextPage = () => {
   const [location, setLocation] = useState('Nantes')
   const [date, setDate] = useState(new Date())
 
-  /*   const events = {
-    events: [
-      {
-        name: 'Tomorrowland 2023',
-        organizator: 'tomorrowland',
-        date: '21/07/2023 - 30/07/2023',
-        location: 'Belgique',
-        description:
-          'Tomorrowland est un festival de musique électronique organisé au mois de juillet sur le site du domaine provincial De Schorre à Boom en Belgique.',
-        image: 'https://ipfs-2.thirdwebcdn.com/ipfs/QmYNw6WvutaxeZfrJ9ioMhTAikmAaiS6C7GRg1grCKsRVK/event1.jpg',
-        nfts: [0, 1],
-      },
-      {
-        name: 'Awakening 2023',
-        organizator: 'awakening',
-        date: '21/07/2023 - 30/07/2023',
-        location: 'Pays-Bas',
-        description:
-          "Awakenings est un festival de musique techno se déroulant aux Pays-Bas sur deux jours, représentant le point culminant de la scène techno néerlandaise, et peut-être même européenne! Le festival a lieu à la fin juin, à l'ouest d'Amsterdam, à Spaarnwoude, entre Amsterdam et Haarlem. Plus de 90 événements y sont présentés, sur huit scènes et tentes à l'emplacement du festival.",
-        image: 'https://ipfs-2.thirdwebcdn.com/ipfs/QmUY1a3mpX9N1ovtZFb9DSoHJ63x6zkXZRdqDn5zxE4jvz/event2.jpg',
-        nfts: [2],
-      },
-    ],
-  } */
-
   return (
     <Container
       isLoading={false}
