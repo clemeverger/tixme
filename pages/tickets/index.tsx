@@ -18,7 +18,7 @@ const Tickets = () => {
     if (!events || !tickets || !Array.isArray(events.events) || !Array.isArray(tickets)) return []
     const upcomingTickets = tickets.filter((ticket: any) => {
       const event = events.events.find((event: any) => event.nfts.includes(Number(ticket.metadata.id)))
-      let date = event.date
+      let date = event.date.replaceAll(' ', '')
       if (date.includes('-')) date = date.split('-')[0]
       const day = date.split('/')[0]
       const month = date.split('/')[1]
@@ -40,7 +40,7 @@ const Tickets = () => {
     if (!events || !tickets || !Array.isArray(events.events) || !Array.isArray(tickets)) return []
     const pastTickets = tickets.filter((ticket: any) => {
       const event = events.events.find((event: any) => event.nfts.includes(Number(ticket.metadata.id)))
-      let date = event.date
+      let date = event.date.replaceAll(' ', '')
       if (date.includes('-')) date = date.split('-')[0]
       const day = date.split('/')[0]
       const month = date.split('/')[1]
