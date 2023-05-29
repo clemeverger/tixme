@@ -69,6 +69,7 @@ const Tickets = () => {
           />
         </>
       }
+      isLoading={isLoading}
     >
       <Head>
         <title>tixme - tickets</title>
@@ -80,14 +81,7 @@ const Tickets = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Skeleton
-              isLoaded={!isLoading}
-              startColor='primary.300'
-              endColor='neutral.900'
-              mt={'0!important'}
-            >
-              <TicketsOwnedDrawer tickets={upcomingTickets} />
-            </Skeleton>
+            <TicketsOwnedDrawer tickets={upcomingTickets} />
           </TabPanel>
           <TabPanel>
             <Skeleton
