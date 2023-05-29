@@ -9,7 +9,10 @@ const index = () => {
       topNavigation={
         <>
           <Text>Mes tickets</Text>
-          <Image src='/icons/message.svg' />
+          <Image
+            src='/icons/message.svg'
+            alt='icon message'
+          />
         </>
       }
     >

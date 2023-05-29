@@ -11,7 +11,7 @@ import { BigNumber, utils } from 'ethers'
 import React, { useMemo, useState } from 'react'
 import { contractAddress } from '../configs/contracts'
 import { parseIneligibility } from '../helpers/parseIneligibility'
-import { Button, HStack, IconButton, Image, Spinner, Stack, Text, useToast } from '@chakra-ui/react'
+import { Button, HStack, IconButton, Image, Skeleton, Spinner, Stack, Text, useToast } from '@chakra-ui/react'
 
 type ClaimConditionsProps = {
   tokenId: number
@@ -147,101 +147,108 @@ const ClaimConditions = ({ tokenId }: ClaimConditionsProps) => {
   const toast = useToast()
 
   return (
-    <Stack gap={2}>
-      <HStack justify={'space-between'}>
-        <Text color={'primary.300'}>0.0 MATIC</Text>
-        <HStack>
-          <IconButton
-            aria-label='decrease quantity'
-            onClick={() => setQuantity(quantity - 1)}
-            isDisabled={quantity <= 0}
-            bg={'none'}
-            _focus={{
-              bg: 'none',
-            }}
-            icon={
-              <Image
-                src='/icons/minus.svg'
-                alt='tickets icon'
-              />
-            }
-          >
-            -
-          </IconButton>
-          <Text>{quantity}</Text>
-          <IconButton
-            aria-label='increase quantity'
-            onClick={() => setQuantity(quantity + 1)}
-            isDisabled={quantity >= maxClaimable}
-            bg={'none'}
-            _focus={{
-              bg: 'none',
-            }}
-            icon={
-              <Image
-                src='/icons/more.svg'
-                alt='tickets icon'
-              />
-            }
-          >
-            +
-          </IconButton>
+    <Skeleton
+      isLoaded={!isLoading}
+      startColor='primary.300'
+      endColor='neutral.900'
+      mt={'0!important'}
+    >
+      <Stack gap={2}>
+        <HStack justify={'space-between'}>
+          <Text color={'primary.300'}>0.0 MATIC</Text>
+          <HStack>
+            <IconButton
+              aria-label='decrease quantity'
+              onClick={() => setQuantity(quantity - 1)}
+              isDisabled={quantity <= 0}
+              bg={'none'}
+              _focus={{
+                bg: 'none',
+              }}
+              icon={
+                <Image
+                  src='/icons/minus.svg'
+                  alt='tickets icon'
+                />
+              }
+            >
+              -
+            </IconButton>
+            <Text>{quantity}</Text>
+            <IconButton
+              aria-label='increase quantity'
+              onClick={() => setQuantity(quantity + 1)}
+              isDisabled={quantity >= maxClaimable}
+              bg={'none'}
+              _focus={{
+                bg: 'none',
+              }}
+              icon={
+                <Image
+                  src='/icons/more.svg'
+                  alt='tickets icon'
+                />
+              }
+            >
+              +
+            </IconButton>
+          </HStack>
         </HStack>
-      </HStack>
-      {isSoldOut ? (
-        <Button
-          variant={'neutral'}
-          width={'full'}
-        >
-          Plus de ticket disponible
-        </Button>
-      ) : (
-        <Web3Button
-          contractAddress={editionDrop?.getAddress()!}
-          action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
-          isDisabled={!canClaim || buttonLoading || quantity <= 0}
-          onError={(err) => {
-            toast({
-              title: 'Oups',
-              description: err.message,
-              status: 'error',
-              duration: 5000,
-              isClosable: true,
-            })
-          }}
-          onSuccess={() => {
-            setQuantity(0)
-            toast({
-              title: 'Félicitations',
-              description: 'Transaction effectuée avec succès',
-              status: 'success',
-              duration: 5000,
-              isClosable: true,
-            })
-          }}
-          style={
-            !canClaim || buttonLoading || quantity <= 0
-              ? { width: '100%', backgroundColor: '#343A40', color: 'white', opacity: 0.4, marginTop: 0 }
-              : {
-                  width: '100%',
-                  borderRadius: '100px',
-                  backgroundColor: '#556AEB',
-                  color: 'white',
-                  marginTop: 0,
-                }
-          }
-        >
-          {buttonLoading ? (
-            <Spinner
-              size={'sm'}
-              color='white'
-            />
-          ) : (
-            buttonText
-          )}
-        </Web3Button>
-      )}
-    </Stack>
+        {isSoldOut ? (
+          <Button
+            variant={'neutral'}
+            width={'full'}
+          >
+            Plus de ticket disponible
+          </Button>
+        ) : (
+          <Web3Button
+            contractAddress={editionDrop?.getAddress()!}
+            action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
+            isDisabled={!canClaim || buttonLoading || quantity <= 0}
+            onError={(err) => {
+              toast({
+                title: 'Oups',
+                description: err.message,
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+              })
+            }}
+            onSuccess={() => {
+              setQuantity(0)
+              toast({
+                title: 'Félicitations',
+                description: 'Transaction effectuée avec succès',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+              })
+            }}
+            style={
+              !canClaim || buttonLoading || quantity <= 0
+                ? { width: '100%', backgroundColor: '#343A40', color: 'white', opacity: 0.4, marginTop: 0 }
+                : {
+                    width: '100%',
+                    borderRadius: '100px',
+                    backgroundColor: '#556AEB',
+                    color: 'white',
+                    marginTop: 0,
+                  }
+            }
+          >
+            {buttonLoading ? (
+              <Spinner
+                size={'sm'}
+                color='white'
+              />
+            ) : (
+              buttonText
+            )}
+          </Web3Button>
+        )}
+      </Stack>
+    </Skeleton>
   )
 }
 
