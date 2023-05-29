@@ -1,5 +1,5 @@
 import { ThirdwebNftMedia, useClaimConditions, useContract } from '@thirdweb-dev/react'
-import { Box, Skeleton, Stack, Text } from '@chakra-ui/react'
+import { Box, Skeleton, Text } from '@chakra-ui/react'
 import ClaimConditions from './ClaimConditions'
 import { contractAddress } from '../../configs/contracts'
 

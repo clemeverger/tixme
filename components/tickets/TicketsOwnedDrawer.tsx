@@ -1,5 +1,6 @@
-import { useDisclosure, Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody, Image, Stack, Text, HStack } from '@chakra-ui/react'
+import { useDisclosure, Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody, Image, Stack, Text, HStack, IconButton } from '@chakra-ui/react'
 import { ThirdwebNftMedia } from '@thirdweb-dev/react'
+import { useRef } from 'react'
 
 type TicketsOwnedDrawerProps = {
   ticket: TicketOwned
@@ -7,9 +8,13 @@ type TicketsOwnedDrawerProps = {
 
 const TicketsOwnedDrawer = ({ ticket }: TicketsOwnedDrawerProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const finalFocusRef = useRef(null)
   return (
     <>
-      <Stack onClick={onOpen}>
+      <Stack
+        onClick={onOpen}
+        ref={finalFocusRef}
+      >
         <ThirdwebNftMedia
           metadata={ticket.metadata}
           width='100%'
@@ -49,6 +54,7 @@ const TicketsOwnedDrawer = ({ ticket }: TicketsOwnedDrawerProps) => {
         placement='bottom'
         size={'full'}
         onClose={onClose}
+        finalFocusRef={finalFocusRef}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -102,21 +108,79 @@ const TicketsOwnedDrawer = ({ ticket }: TicketsOwnedDrawerProps) => {
 
             <HStack mb={1}>
               <Image
-                src='/icons/calendar-primary-200.svg'
+                src='/icons/calendar-primary-300-full.svg'
                 width={6}
                 height={6}
                 alt='calendar icon'
               />
-              <Text color={'primary.200'}>{ticket.date}</Text>
+              <Text color={'primary.300'}>{ticket.date}</Text>
             </HStack>
             <HStack mb={4}>
               <Image
-                src='/icons/location-primary-200.svg'
+                src='/icons/location-primary-300-full.svg'
                 alt='calendar icon'
                 width={6}
                 height={6}
               />
-              <Text color={'primary.200'}>{ticket.location}</Text>
+              <Text color={'primary.300'}>{ticket.location}</Text>
+            </HStack>
+            <HStack justify={'space-between'}>
+              <IconButton
+                height={16}
+                width={16}
+                bg={'neutral.800'}
+                aria-label='set alarm'
+                icon={
+                  <Image
+                    src='/icons/alarm.svg'
+                    alt='alarm icon'
+                    width={8}
+                    height={8}
+                  />
+                }
+              />
+              <IconButton
+                height={16}
+                width={16}
+                bg={'neutral.800'}
+                aria-label='send ticket'
+                icon={
+                  <Image
+                    src='/icons/send.svg'
+                    alt='send icon'
+                    width={8}
+                    height={8}
+                  />
+                }
+              />
+              <IconButton
+                height={16}
+                width={16}
+                bg={'neutral.800'}
+                aria-label='sell ticket'
+                icon={
+                  <Image
+                    src='/icons/sell.svg'
+                    alt='sell icon'
+                    width={8}
+                    height={8}
+                  />
+                }
+              />
+              <IconButton
+                height={16}
+                width={16}
+                bg={'neutral.800'}
+                aria-label='use ticket'
+                icon={
+                  <Image
+                    src='/icons/use.svg'
+                    alt='use icon'
+                    width={8}
+                    height={8}
+                  />
+                }
+              />
             </HStack>
           </DrawerBody>
         </DrawerContent>
