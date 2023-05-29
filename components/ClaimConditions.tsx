@@ -221,7 +221,7 @@ const ClaimConditions = ({ tokenId }: ClaimConditionsProps) => {
           }}
           style={
             !canClaim || buttonLoading || quantity <= 0
-              ? { width: '100%', backgroundColor: '#343A40', color: 'white', opacity: 0.2, marginTop: 0 }
+              ? { width: '100%', backgroundColor: '#343A40', color: 'white', opacity: 0.4, marginTop: 0 }
               : {
                   width: '100%',
                   borderRadius: '100px',
