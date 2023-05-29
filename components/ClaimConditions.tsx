@@ -141,6 +141,7 @@ const ClaimConditions = ({ tokenId }: ClaimConditionsProps) => {
     if (claimIneligibilityReasons.data?.length) {
       return parseIneligibility(claimIneligibilityReasons.data, quantity)
     } else return 'Vous ne remplissez pas les conditions'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSoldOut, canClaim, claimIneligibilityReasons.data, buttonLoading, activeClaimCondition.data?.currencyMetadata.value, priceToMint, quantity])
 
   const toast = useToast()
