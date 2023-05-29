@@ -10,18 +10,18 @@ import EventCard from '../../components/EventCard'
 import useGetEvents from '../../hooks/useGetEvents'
 
 const Marketplace: NextPage = () => {
-  /* const { contract: editionDrop } = useContract(contractAddress)
+  const { contract: editionDrop } = useContract(contractAddress)
   const { data: tickets, isLoading: ticketsLoading } = useNFTs(editionDrop)
 
   const events = useGetEvents()
   const eventsWithTickets = useMemo(() => {
-    if (!events || !tickets) return []
+    if (!events || !tickets || !Array.isArray(events.events) || !Array.isArray(tickets)) return []
     return events.events.map((event: any) => ({
       ...event,
       tickets: tickets.filter((ticket) => event.nfts.includes(Number(ticket.metadata.id))),
     }))
-  }, [events, tickets]) */
-  const eventsWithTickets = [
+  }, [events, tickets])
+  /* const eventsWithTickets = [
     {
       name: 'Tomorrowland 2023',
       organizator: 'tomorrowland',
@@ -84,14 +84,14 @@ const Marketplace: NextPage = () => {
         },
       ],
     },
-  ]
+  ] */
 
   const [location, setLocation] = useState('Nantes')
   const [date, setDate] = useState(new Date())
 
   return (
     <Container
-      isLoading={false}
+      isLoading={ticketsLoading}
       topNavigation={
         <>
           <Select

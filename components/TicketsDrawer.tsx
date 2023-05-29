@@ -21,13 +21,10 @@ import React from 'react'
 import PrimarySalesTickets from './PrimarySalesTickets'
 
 const TicketsDrawer = ({ metadata }: any) => {
-  console.log('🚀 ~ TicketsDrawer ~ metadata:', metadata)
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef(null)
   return (
     <>
       <Button
-        ref={btnRef}
         width={'full'}
         variant='primary'
         onClick={onOpen}
@@ -35,7 +32,7 @@ const TicketsDrawer = ({ metadata }: any) => {
           <Image
             src='/icons/tickets-inactive.svg'
             alt='tickets icon'
-            width={4}
+            width={6}
           />
         }
       >
@@ -45,7 +42,6 @@ const TicketsDrawer = ({ metadata }: any) => {
         isOpen={isOpen}
         placement='right'
         onClose={onClose}
-        finalFocusRef={btnRef}
         size={'full'}
       >
         <DrawerOverlay />
