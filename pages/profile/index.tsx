@@ -2,9 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import Container from '../../layouts/Container'
 import { ConnectWallet } from '@thirdweb-dev/react'
-import { Heading, Text } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 
-const index = () => {
+const Profile = () => {
   return (
     <Container
       topNavigation={
@@ -16,7 +16,6 @@ const index = () => {
       <Head>
         <title>tixme - profil</title>
       </Head>
-
       <ConnectWallet
         btnTitle='Connexion'
         style={{ width: '100%', justifyContent: 'space-evenly' }}
@@ -25,4 +24,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Profile

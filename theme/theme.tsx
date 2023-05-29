@@ -108,6 +108,9 @@ export const theme = extendTheme({
               color: 'white',
             },
           },
+          tabpanel: {
+            px: 0,
+          },
         },
       },
     },
@@ -123,6 +126,7 @@ export const theme = extendTheme({
         },
         body: {
           paddingX: 4,
+          paddingY: 0,
         },
         footer: {
           paddingX: 4,

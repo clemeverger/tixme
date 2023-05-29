@@ -6,7 +6,6 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerBody,
-  Input,
   DrawerFooter,
   useDisclosure,
   Image,
@@ -36,7 +35,7 @@ const TicketsDrawer = ({ metadata }: any) => {
           />
         }
       >
-        à partir de 0.0 MATIC
+        à partir de 0 €
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -61,11 +60,9 @@ const TicketsDrawer = ({ metadata }: any) => {
                 alt='tickets icon'
                 width={4}
                 height={4}
-                opacity={0.4}
               />
             </HStack>
           </DrawerHeader>
-
           <DrawerBody>
             <Tabs variant={'neutral'}>
               <TabList>
@@ -73,7 +70,7 @@ const TicketsDrawer = ({ metadata }: any) => {
                 <Tab flex={1}>Marché secondaire</Tab>
               </TabList>
               <TabPanels>
-                <TabPanel px={0}>
+                <TabPanel>
                   <PrimarySalesTickets tickets={metadata.tickets} />
                 </TabPanel>
                 <TabPanel>

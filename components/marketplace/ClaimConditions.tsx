@@ -9,8 +9,8 @@ import {
 } from '@thirdweb-dev/react'
 import { BigNumber, utils } from 'ethers'
 import React, { useMemo, useState } from 'react'
-import { contractAddress } from '../configs/contracts'
-import { parseIneligibility } from '../helpers/parseIneligibility'
+import { contractAddress } from '../../configs/contracts'
+import { parseIneligibility } from '../../helpers/parseIneligibility'
 import { Button, HStack, IconButton, Image, Skeleton, Spinner, Stack, Text, useToast } from '@chakra-ui/react'
 
 type ClaimConditionsProps = {
@@ -155,7 +155,7 @@ const ClaimConditions = ({ tokenId }: ClaimConditionsProps) => {
     >
       <Stack gap={2}>
         <HStack justify={'space-between'}>
-          <Text color={'primary.300'}>0.0 MATIC</Text>
+          <Text color={'primary.300'}>0 €</Text>
           <HStack>
             <IconButton
               aria-label='decrease quantity'

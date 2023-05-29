@@ -21,3 +21,21 @@ type EventWithTicket = {
   nfts: number[]
   tickets: Ticket[]
 }
+
+type TicketOwned = {
+  owner: string
+  metadata: {
+    name: string
+    description: string
+    image: string
+    id: string
+    uri: string
+  }
+  type: string
+  supply: string
+  quantityOwned: string
+  name: string
+  organizator: string
+  date: string
+  location: string
+}

@@ -1,15 +1,13 @@
 import { useDisclosure, Text, Button, Drawer, DrawerContent, DrawerBody, DrawerFooter, HStack, Image, Box, Stack, DrawerHeader, VStack } from '@chakra-ui/react'
 import { ThirdwebNftMedia } from '@thirdweb-dev/react'
 import TicketsDrawer from './TicketsDrawer'
+import { useRef } from 'react'
 
 const EventCard = ({ metadata }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Stack
-        onClick={onOpen}
-        gap={0.5}
-      >
+      <Box onClick={onOpen}>
         <ThirdwebNftMedia
           metadata={metadata}
           width='100%'
@@ -17,14 +15,19 @@ const EventCard = ({ metadata }: any) => {
           style={{ objectFit: 'cover', objectPosition: 'center center', aspectRatio: '16/9' }}
         />
 
-        <Text fontSize={'lg'}>{metadata.name}</Text>
+        <Text
+          fontSize={'lg'}
+          mt={1}
+        >
+          {metadata.name}
+        </Text>
         <HStack
           width={'full'}
           justify={'space-between'}
           align={'flex-start'}
           mt={'0!important'}
         >
-          <Stack gap={0.5}>
+          <Stack gap={1}>
             <Text
               fontSize={'sm'}
               color={'neutral.500'}
@@ -53,11 +56,11 @@ const EventCard = ({ metadata }: any) => {
                 src='/icons/tickets-inactive.svg'
                 alt='tickets icon'
               />
-              <Text>0.0 MATIC</Text>
+              <Text>0 €</Text>
             </HStack>
           </Box>
         </HStack>
-      </Stack>
+      </Box>
       <Drawer
         isOpen={isOpen}
         placement='bottom'
@@ -80,7 +83,6 @@ const EventCard = ({ metadata }: any) => {
                 alt='chevron down icon'
                 width={6}
                 height={6}
-                opacity={0.4}
               />
             </HStack>
           </DrawerHeader>
@@ -92,56 +94,47 @@ const EventCard = ({ metadata }: any) => {
               style={{ objectFit: 'cover', objectPosition: 'center center', aspectRatio: '16/9' }}
             />
 
-            <Stack
-              gap={4}
-              my={4}
+            <Text
+              fontSize={'xl'}
+              color={'primary.300'}
+              textTransform={'uppercase'}
+              mt={1}
             >
-              <Stack>
-                <Text
-                  fontSize={'xl'}
-                  color={'primary.300'}
-                  textTransform={'uppercase'}
-                >
-                  {metadata.name}
-                </Text>
-                <Text
-                  fontSize={'sm'}
-                  color={'neutral.500'}
-                >
-                  @{metadata.organizator}
-                </Text>
-              </Stack>
-              <Stack
-                gap={2}
-                mt={'0!important'}
-              >
-                <HStack
-                  mt={'0!important'}
-                  gap={1}
-                >
-                  <Image
-                    src='/icons/calendar-primary-200.svg'
-                    width={6}
-                    height={6}
-                    alt='calendar icon'
-                  />
-                  <Text color={'primary.200'}>{metadata.date}</Text>
-                </HStack>
-                <HStack
-                  mt={'0!important'}
-                  gap={1}
-                >
-                  <Image
-                    src='/icons/location-primary-200.svg'
-                    alt='calendar icon'
-                  />
-                  <Text color={'primary.200'}>{metadata.location}</Text>
-                </HStack>
-              </Stack>
-              <Stack>
-                <Text lineHeight={6}>{metadata.description}</Text>
-              </Stack>
-            </Stack>
+              {metadata.name}
+            </Text>
+            <Text
+              fontSize={'sm'}
+              color={'neutral.500'}
+              mb={4}
+            >
+              @{metadata.organizator}
+            </Text>
+            <HStack mb={1}>
+              <Image
+                src='/icons/calendar-primary-200.svg'
+                width={6}
+                height={6}
+                alt='calendar icon'
+              />
+              <Text color={'primary.200'}>{metadata.date}</Text>
+            </HStack>
+            <HStack mb={4}>
+              <Image
+                src='/icons/location-primary-200.svg'
+                alt='calendar icon'
+                width={6}
+                height={6}
+              />
+              <Text color={'primary.200'}>{metadata.location}</Text>
+            </HStack>
+            <Text
+              fontSize={'lg'}
+              color={'primary.300'}
+              mb={1}
+            >
+              Description
+            </Text>
+            <Text lineHeight={6}>{metadata.description}</Text>
           </DrawerBody>
           <DrawerFooter>
             <TicketsDrawer metadata={metadata} />

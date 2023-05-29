@@ -2,12 +2,12 @@ import Head from 'next/head'
 import React, { useMemo, useState } from 'react'
 import { Box, HStack, Image, Img, Input, InputGroup, InputLeftElement, Select, Stack, Text } from '@chakra-ui/react'
 import { useContract, useNFTs } from '@thirdweb-dev/react'
-import { contractAddress } from '../../configs/contracts'
 import { NextPage } from 'next'
 import Container from '../../layouts/Container'
 import getReadableDate from '../../helpers/getReadableDate'
-import EventCard from '../../components/EventCard'
+import EventDrawer from '../../components/marketplace/EventDrawer'
 import useGetEvents from '../../hooks/useGetEvents'
+import { contractAddress } from '../../configs/contracts'
 
 const Marketplace: NextPage = () => {
   const { contract: editionDrop } = useContract(contractAddress)
@@ -18,7 +18,6 @@ const Marketplace: NextPage = () => {
   const [search, setSearch] = useState('')
 
   const events = useGetEvents()
-
   const eventsWithTickets = useMemo(() => {
     if (!events || !tickets || !Array.isArray(events.events) || !Array.isArray(tickets)) return []
     let eventsFiltered = events.events
@@ -80,7 +79,7 @@ const Marketplace: NextPage = () => {
           {eventsWithTickets &&
             eventsWithTickets.map((event: any, index: number) => {
               return (
-                <EventCard
+                <EventDrawer
                   key={index}
                   metadata={event}
                 />

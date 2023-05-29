@@ -1,6 +1,6 @@
 import React from 'react'
-import TicketCard from './TicketCard'
 import { Stack } from '@chakra-ui/react'
+import TicketCard from './TicketCard'
 type Tickets = { tickets: Ticket[] }
 
 const PrimarySalesTickets = ({ tickets }: Tickets) => {
