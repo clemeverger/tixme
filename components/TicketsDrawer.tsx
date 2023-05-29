@@ -52,6 +52,7 @@ const TicketsDrawer = ({ metadata }: any) => {
                 src='/icons/chevron-left.svg'
                 alt='tickets icon'
                 width={4}
+                height={4}
                 onClick={onClose}
               />
               <Text fontSize={'md'}>Tickets</Text>
@@ -59,6 +60,8 @@ const TicketsDrawer = ({ metadata }: any) => {
                 src='/icons/bag.svg'
                 alt='tickets icon'
                 width={4}
+                height={4}
+                opacity={0.4}
               />
             </HStack>
           </DrawerHeader>

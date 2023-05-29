@@ -80,6 +80,7 @@ const EventCard = ({ metadata }: any) => {
                 alt='chevron down icon'
                 width={6}
                 height={6}
+                opacity={0.4}
               />
             </HStack>
           </DrawerHeader>

@@ -43,17 +43,13 @@ const Marketplace: NextPage = () => {
             onChange={(e) => setLocation(e.target.value)}
             icon={<Img src='/icons/chevron-down.svg' />}
             gap={2}
-            isDisabled={true}
           >
             <option value='Paris'>Paris</option>
             <option value='Nantes'>Nantes</option>
           </Select>
           <HStack gap={2}>
-            <Img
-              src='/icons/calendar.svg'
-              opacity={0.4}
-            />
-            <Text opacity={0.4}>{getReadableDate(date)}</Text>
+            <Img src='/icons/calendar.svg' />
+            <Text>{getReadableDate(date)}</Text>
           </HStack>
         </>
       }
